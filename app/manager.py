@@ -27,7 +27,11 @@ class CommandManager:
 
     def get(self, trigger: str) -> Optional[Command]:
         """Get a command by any trigger"""
-        for command in self.commands:
-            if trigger.lower() in command.triggers:
-                return command
-        return None
+        return next(
+            (
+                command
+                for command in self.commands
+                if trigger.lower() in command.triggers
+            ),
+            None,
+        )

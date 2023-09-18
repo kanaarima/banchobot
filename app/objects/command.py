@@ -17,8 +17,4 @@ class Command:
 
         member_roles = [role.name for role in member.roles]
 
-        for role in self.roles:
-            if role in member_roles:
-                return True
-
-        return False
+        return any(role in member_roles for role in self.roles)
